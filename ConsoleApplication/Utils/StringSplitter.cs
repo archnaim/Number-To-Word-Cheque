@@ -1,7 +1,9 @@
-﻿namespace ConsoleApplication.Utils
+﻿using System.Collections.Generic;
+
+namespace ConsoleApplication.Utils
 {
     public interface StringSplitter
     {
-        string splitByDot(string str);
+        List<string> splitByDot(string str);
     }
 }

@@ -5,6 +5,9 @@ namespace ConsoleApplication.Utils
     public class ClassificationImpl:Classification
     {
         readonly ConversionToString cts = new ConversionToStringImpl();
+        
+        //this method is obsolete, it was used as the first prototype of this program as its foundation.
+        //I decided to write more reusable method that is nestedDivision()
         [System.Obsolete("use nestedDivision instead", true)]
         public string classification(string str)
         {
@@ -174,7 +177,11 @@ namespace ConsoleApplication.Utils
                         
                         if(Math.Log10(div)==2 ||((Math.Log10(div)+1)%3==0 && Math.Log10(div)>3))
                         {
-                            output = output + " Hundred And ";
+                            output = output + " Hundred ";
+                            if (input%100 != 0)
+                            {
+                                output = output + "And ";
+                            }
                         }
                         else if(Math.Log10(div)%3==0)
                         {

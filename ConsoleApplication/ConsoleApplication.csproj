@@ -49,6 +49,8 @@
     <Compile Include="Utils\ConversionToStringImpl.cs" />
     <Compile Include="Utils\StringSplitter.cs" />
     <Compile Include="Utils\StringSplitterImpl.cs" />
+    <Compile Include="Utils\WordsIntoMoney.cs" />
+    <Compile Include="Utils\WordsIntoMoneyImpl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

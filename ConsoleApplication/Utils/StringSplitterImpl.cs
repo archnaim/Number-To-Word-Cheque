@@ -1,29 +1,39 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ConsoleApplication.Utils
 {
     public class StringSplitterImpl:StringSplitter
     {
         readonly Classification c = new ClassificationImpl();
-        public string splitByDot(string str)
+        public List<string> splitByDot(string str)
         {
-            string[] numbers;
-            string output;
+            List<string> list = new List<string>();
             if(str.Contains("."))
             {
-                numbers = str.Split('.');
+                string[] numbers = str.Split('.');
                 if(numbers[1].Length==2 && numbers[1]!="00")
                 {
-                    output = c.nestedDivision(numbers[0])+" Dollars And "+c.nestedDivision(numbers[1])+" Cents";   
+                    
+                    list.Add(numbers[0]);
+                    list.Add(numbers[1]);
+                }
+                else if (numbers[1]=="00")
+                {
+                    list.Add(numbers[0]);
                 }
                 else 
                 {
                     Console.WriteLine("After comma must have 2-digit numbers");
                     throw new NotImplementedException();
                 }
+            } 
+            else
+            {
+                list.Add(str);
             }
-            else output = c.nestedDivision(str)+" Dollars";
-            return output;
+            return list;
         }
     }
 }
