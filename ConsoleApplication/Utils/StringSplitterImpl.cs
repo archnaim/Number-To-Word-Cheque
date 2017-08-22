@@ -23,9 +23,14 @@ namespace ConsoleApplication.Utils
                 {
                     list.Add(numbers[0]);
                 }
+                else if (numbers[1].Length==1 && numbers[1]!="0")
+                {
+                    list.Add(numbers[0]);
+                    list.Add(numbers[1]+"0");
+                }
                 else 
                 {
-                    Console.WriteLine("After comma must have 2-digit numbers");
+                    Console.WriteLine("No more than 2 digits after comma");
                     throw new NotImplementedException();
                 }
             } 

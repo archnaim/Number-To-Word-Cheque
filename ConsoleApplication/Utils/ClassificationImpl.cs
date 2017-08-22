@@ -155,6 +155,7 @@ namespace ConsoleApplication.Utils
             long div = (long)Math.Pow(10,Convert.ToInt64(str.Length - 1));
             long input = Convert.ToInt64(str);
             int temp = 0;
+            
             while(div>10 && input!=0)
             {
                 temp = (int)(input/div);
@@ -173,6 +174,7 @@ namespace ConsoleApplication.Utils
                     //1 digit
                     else
                     {
+                        
                         output = output + cts.charToString1Digit(temp);
                         
                         if(Math.Log10(div)==2 ||((Math.Log10(div)+1)%3==0 && Math.Log10(div)>3))
@@ -185,16 +187,31 @@ namespace ConsoleApplication.Utils
                         }
                         else if(Math.Log10(div)%3==0)
                         {
+                            
                             output = output + baseString(div);
                         }
                     }
                     
                 }
+                
+                
                 input = input - (long)(temp*div);
                 // Console.WriteLine(input);
+                if (input == 0)
+                {
+                    break;
+                }
                 div = div/10;
                 // Console.WriteLine(div);
+
                 
+                
+            }
+            if (input == 0 && div>1000 && Math.Log10(div)%3!=0)
+            {
+//                Console.WriteLine("Div : "+div);
+                div = (long) (Math.Log10(div)-(Math.Log10(div)%3));
+                output = output + baseString((long)Math.Pow(10,div));
             }
             if (input>9)
             {
@@ -210,17 +227,33 @@ namespace ConsoleApplication.Utils
         public string baseString(long div)
         {
             string output = null;
-            switch (div)
+            int log10Div = (int)Math.Log10(div);
+            switch (log10Div)
             {
-                case 1000:
+                case 3:
                     output = " Thousand ";
                     break;
-                case 1000000:
+                case 6:
                     output = " Million ";
                     break;
-                case 1000000000:
+                case 9:
                     output = " Billion ";
                     break;
+                case 12:
+                    output = " Trillion ";
+                    break;
+                case 15:
+                    output = " Quadrillion ";
+                    break;
+                case 18:
+                    output = " Quintillion ";
+                    break;
+//                case 21:
+//                    output = " Sextillion ";
+//                    break;
+//                case 24:
+//                    output = " Septillion ";
+//                    break;
                 default:
                     throw new NotImplementedException();
             }
